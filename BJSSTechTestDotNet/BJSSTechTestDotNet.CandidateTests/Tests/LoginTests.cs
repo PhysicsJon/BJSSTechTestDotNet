@@ -23,7 +23,7 @@ namespace BJSSTechTestDotNet.CandidateTests.Tests
 		public void LoginTest_ExampleTest()
 		{
 			// Provided here is an example of how the driver is set up and ready to use.
-			driver.FindElement(By.Id("example_id"));
+			Driver.FindElement(By.Id("example_id"));
 		}
 	}
 }

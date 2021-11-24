@@ -13,7 +13,6 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
 	{
 		private const string LocalhostBaseAddress = "https://127.0.0.1"; 
 		private readonly IWebHost host;
-        private IServiceProvider scopedServices;
 
         public LocalWebApplicationFactory()
         {

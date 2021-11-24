@@ -8,21 +8,22 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
 		private readonly LocalWebApplicationFactory factory;
 
 		public Uri Url { get; }
-		public IWebDriver driver { get; protected set; }
+		public IWebDriver Driver { get; protected set; }
 
 		public TestBase(LocalWebApplicationFactory factory)
 		{
 			this.factory = factory;
 			Url = new Uri(this.factory.RootUri);
 
-			driver = new BrowserFactory("chrome").Driver;
+			Driver = new BrowserFactory("chrome").Driver;
 
-			driver.Navigate().GoToUrl(Url);
+			Driver.Navigate().GoToUrl(Url);
 		}
 
 		public void Dispose()
 		{
-			driver?.Quit();
+			GC.SuppressFinalize(this);
+			Driver?.Quit();
 		}
 	}
 }
