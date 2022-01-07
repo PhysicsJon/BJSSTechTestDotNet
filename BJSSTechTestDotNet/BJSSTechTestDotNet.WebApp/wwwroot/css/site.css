@@ -89,6 +89,10 @@ input.input-validation-error {
     font-size: 1.1em;
 }
 
+.validation-summary-errors ul {
+    list-style: none;
+}
+
 .validation-summary-valid {
     display: none;
 }  
