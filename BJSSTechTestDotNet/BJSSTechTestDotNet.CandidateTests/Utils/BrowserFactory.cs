@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using static System.Net.WebRequestMethods;
 
 namespace BJSSTechTestDotNet.CandidateTests.Utils
@@ -47,22 +48,13 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
         private static bool GetGridStatus()
         {
             var requestUri = new Uri("http://localhost:4444/grid/console");
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUri);
-            request.AllowAutoRedirect = false; // find out if this site is up and don't follow a redirector
-            request.Method = Http.Get;
+            using var httpClient = new HttpClient();
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, requestUri);
             try
             {
-                var response = (HttpWebResponse)request.GetResponse();
+                var response = httpClient.SendAsync(httpRequest).GetAwaiter().GetResult();
 
-                // do something with response.Headers to find out information about the request
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return response.IsSuccessStatusCode;
             }
             catch
             {
