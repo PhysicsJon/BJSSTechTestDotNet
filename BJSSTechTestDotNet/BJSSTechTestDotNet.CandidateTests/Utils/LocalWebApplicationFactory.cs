@@ -49,6 +49,7 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
             if (disposing)
             {
                 host?.Dispose();
+                Driver?.Dispose();
             }
         }
     }
