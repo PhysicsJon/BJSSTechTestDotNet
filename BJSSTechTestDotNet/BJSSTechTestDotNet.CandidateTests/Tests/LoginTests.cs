@@ -5,7 +5,7 @@ using Xunit;
 
 namespace BJSSTechTestDotNet.CandidateTests.Tests
 {
-	public class LoginTests : TestBase, IClassFixture<LocalWebApplicationFactory>, IDisposable
+	public class LoginTests : TestBase, IClassFixture<LocalWebApplicationFactory>
 	{
 		public LoginTests(LocalWebApplicationFactory factory)
 			: base(factory)

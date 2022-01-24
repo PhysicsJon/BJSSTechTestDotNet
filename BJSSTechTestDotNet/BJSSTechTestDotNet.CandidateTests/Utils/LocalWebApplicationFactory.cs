@@ -3,6 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Mvc.Testing;
+using OpenQA.Selenium;
 using System;
 using System.IO;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
 {
 	public sealed class LocalWebApplicationFactory : WebApplicationFactory<Startup>
 	{
-		private const string LocalhostBaseAddress = "https://127.0.0.1"; 
+		private const string LocalhostBaseAddress = "https://127.0.0.1";
+        private const string Browser = "chrome";
+
 		private readonly IWebHost host;
 
         public LocalWebApplicationFactory()
@@ -22,6 +25,8 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
             host.Start();
 
             RootUri = host.ServerFeatures.Get<IServerAddressesFeature>().Addresses.LastOrDefault();
+
+            Driver = new BrowserFactory(Browser).Driver;
         }
 
         protected override IWebHostBuilder CreateWebHostBuilder()
@@ -36,6 +41,7 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
         }
 
         public string RootUri { get; }
+        public IWebDriver Driver { get; internal set; }
 
         protected override void Dispose(bool disposing)
         {

@@ -3,7 +3,7 @@ using System;
 
 namespace BJSSTechTestDotNet.CandidateTests.Utils
 {
-	public abstract class TestBase : IDisposable
+	public abstract class TestBase
 	{
 		private readonly LocalWebApplicationFactory factory;
 
@@ -15,15 +15,9 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
 			this.factory = factory;
 			Url = new Uri(this.factory.RootUri);
 
-			Driver = new BrowserFactory("chrome").Driver;
+			Driver = factory.Driver;
 
 			Driver.Navigate().GoToUrl(Url);
-		}
-
-		public void Dispose()
-		{
-			GC.SuppressFinalize(this);
-			Driver?.Quit();
 		}
 	}
 }

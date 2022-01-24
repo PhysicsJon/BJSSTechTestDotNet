@@ -80,23 +80,19 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
 
         private IWebDriver GetBrowser(string browser)
         {
-            IWebDriver driver;
-
             if (Debugger.IsAttached || !GridRunning)
             {
-                driver = GetLocalChromeDriver();
+                return GetLocalChromeDriver();
             }
             else
             {
-                driver = browser.ToLower() switch
+                return browser.ToLower() switch
                 {
                     "chrome" or "googlechrome" => GetChromeDriver(DefaultHubUrl),
                     "firefox" or "ff" or "mozilla" => GetFirefoxDriver(DefaultHubUrl),
                     _ => GetLocalChromeDriver(),
                 };
             }
-
-            return driver;
         }
     }
 }
