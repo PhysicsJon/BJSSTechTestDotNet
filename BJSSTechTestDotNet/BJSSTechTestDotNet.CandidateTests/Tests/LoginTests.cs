@@ -1,6 +1,5 @@
 ﻿using BJSSTechTestDotNet.CandidateTests.Utils;
 using OpenQA.Selenium;
-using System;
 using Xunit;
 
 namespace BJSSTechTestDotNet.CandidateTests.Tests
@@ -15,7 +14,7 @@ namespace BJSSTechTestDotNet.CandidateTests.Tests
 		/*
 		 *  Please feel free to run the application (press F5) at any time to check the functionality of the page under test
 		 *  Correct login details are as follows
-		 *	interviewee@bjss.com	Test123
+		 *	candidate@bjss.com	Test123
 		 * 
 		 * */
 

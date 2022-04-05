@@ -41,7 +41,7 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
         }
 
         public string RootUri { get; }
-        public IWebDriver Driver { get; internal set; }
+        public IWebDriver Driver { get; }
 
         protected override void Dispose(bool disposing)
         {

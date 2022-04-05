@@ -6,7 +6,7 @@ namespace BJSSTechTestDotNet.WebApp.Services
     {
         public bool CheckCredentials(User user)
         {
-            return user.UserName == "interviewee@bjss.com" && user.Password == "Test123";
+            return user.UserName == "candidate@bjss.com" && user.Password == "Test123";
         }
     }
 }
