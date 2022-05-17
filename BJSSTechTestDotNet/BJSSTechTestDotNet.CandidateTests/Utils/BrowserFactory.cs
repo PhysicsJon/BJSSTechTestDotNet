@@ -1,17 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Net.Http;
-using static System.Net.WebRequestMethods;
 
 namespace BJSSTechTestDotNet.CandidateTests.Utils
 {
-	public sealed class BrowserFactory
+    public sealed class BrowserFactory
 	{
         private const string DefaultHubUrl = "http://localhost:4444/wd/hub";
 
@@ -43,6 +42,13 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
             options.AddArguments("headless", "window-size=1920,1080", "no-sandbox", "acceptInsecureCerts");
 
             return new RemoteWebDriver(new Uri(hubURL), options);
+        }
+
+        private static IWebDriver GetEdgeDriver()
+        {
+            var options = new EdgeOptions();
+            options.AddArguments("start-maximized", "no-sandbox", "auto-open-devtools-for-tabs", "ignore-certificate-errors", "log-level=3");
+            return new EdgeDriver(options);
         }
 
         private static bool GetGridStatus()
@@ -90,6 +96,7 @@ namespace BJSSTechTestDotNet.CandidateTests.Utils
                 {
                     "chrome" or "googlechrome" => GetChromeDriver(DefaultHubUrl),
                     "firefox" or "ff" or "mozilla" => GetFirefoxDriver(DefaultHubUrl),
+                    "edge" or "msedge" or "ms" => GetEdgeDriver(),
                     _ => GetLocalChromeDriver(),
                 };
             }
